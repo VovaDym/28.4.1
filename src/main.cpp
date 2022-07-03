@@ -48,7 +48,7 @@ int main()
 {
     constexpr int amountSwimmers = 6;
     constexpr int lengthLane = 100;
-    Swimmer* newSwimmer;
+    
 
     std::vector <Swimmer*> swimmers;
     for (int i = 0; i < amountSwimmers; ++i)
@@ -65,7 +65,7 @@ int main()
             std::cin >> speed;
         }
             
-        newSwimmer = new Swimmer(name, speed);
+        Swimmer* newSwimmer = new Swimmer(name, speed);
         swimmers.push_back(newSwimmer);   
     }
     
@@ -92,9 +92,12 @@ int main()
         std::cout.width(10);
         std::cout  << swimmers[i]->getName();
         std::cout.width(10);
-        std::cout.fixed;
+        std::cout << std::fixed;
         std::cout.precision(4);
         std::cout << swimmers[i]->getSwimTime() << " sec" << std::endl;
     }
-    delete newSwimmer;
+    for (int i = 0; i < swimmers.size(); ++i)
+    {
+        delete swimmers[i];
+    }  
 }
